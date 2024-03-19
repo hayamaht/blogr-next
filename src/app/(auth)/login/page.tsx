@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function LoginPage() {
   return (
-    <div className='mt-12'>
+    <div className='flex flex-col items-center justify-center min-h-screen'>
       please log in 
       <LoginButton />
     </div>

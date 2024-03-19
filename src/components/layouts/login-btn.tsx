@@ -2,16 +2,16 @@
 
 import { useFormStatus } from "react-dom";
 import { signIn } from "next-auth/react";
+import { Button } from "../ui/button";
 
 export default function LoginButton() {
   //const { pending } = useFormStatus();
 
   return (
-    <button
-      className="mt-12 bg-slate-600 p-4 "
+    <Button
       onClick={() => signIn("github", { callbackUrl:"/"})}
     >
       Log in with Github
-    </button>
+    </Button>
   );
 }
