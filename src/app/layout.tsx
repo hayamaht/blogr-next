@@ -4,8 +4,12 @@ import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import AuthProvider from "@/components/providers/auth";
 import Header from "@/components/layouts/header";
+import { cn } from "@/lib/utils";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ 
+  subsets: ["latin"],
+  variable: "--font-sans"
+});
 
 export const metadata: Metadata = {
   title: "Blogr Next",
@@ -18,8 +22,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={cn(
+        "min-h-screen bg-background font-sans antialiased",
+        inter.variable
+      )}>
         <AuthProvider>
           <Header />
           <div className="mt-12">
