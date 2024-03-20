@@ -5,6 +5,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Button } from './ui/button'
 import { Label } from './ui/label'
 import { Input } from './ui/input'
+import { Textarea } from './ui/textarea'
 
 export default function CreatePost() {
   const onSubmit = (e: any) => {
@@ -23,11 +24,16 @@ export default function CreatePost() {
           <DialogTitle>Create a new post</DialogTitle>
           <DialogDescription>create a new post, title, description</DialogDescription>
         </DialogHeader>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} className='space-y-2'>
           <div>
             <Label>Title</Label>
             <Input type='text' name='title' />
           </div>
+          <div>
+            <Label>Content</Label>
+            <Textarea name='content' />
+          </div>
+          <Button type='submit'>Create</Button>
         </form>
       </DialogContent>
     </Dialog>
