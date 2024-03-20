@@ -7,10 +7,8 @@ export default function MyAvatar({
 }: {
   user: User
 }) {
-  console.log(user);
   return (
     <div>
-      {user.image}
       <LogoutButton />
     </div>
   )
