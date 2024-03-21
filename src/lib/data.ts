@@ -1,7 +1,6 @@
 import { unstable_noStore } from "next/cache";
 import prisma from "@/lib/prisma";
 
-
 export async function fetchPosts() {
   unstable_noStore();
 
@@ -14,8 +13,6 @@ export async function fetchPosts() {
         },
       },
     });
-
-    console.log(data);
 
     return data;
   } catch (error) {
