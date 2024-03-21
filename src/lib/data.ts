@@ -15,6 +15,8 @@ export async function fetchPosts() {
       },
     });
 
+    console.log(data);
+
     return data;
   } catch (error) {
     console.error('Database Error: ', error);
