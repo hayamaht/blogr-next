@@ -1,10 +1,8 @@
 import CreatePost from "@/components/create-post";
 import Header from "@/components/layouts/header";
 import Post from "@/components/post";
-import { Button, buttonVariants } from "@/components/ui/button";
 import { auth } from "@/lib/auth-config";
 import { fetchPosts } from "@/lib/data";
-import Link from "next/link";
 
 export default async function Home() {
   const posts = await fetchPosts();
