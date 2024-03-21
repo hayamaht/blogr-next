@@ -1,16 +1,14 @@
 import Header from "@/components/layouts/header";
-import Post from "@/components/post";
+import Posts from "@/components/posts";
+import { PostsSkeleton } from "@/components/skeletons";
 import { buttonVariants } from "@/components/ui/button";
 import { auth } from "@/lib/auth-config";
-import { fetchPosts } from "@/lib/data";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export default async function Home() {
-  const posts = await fetchPosts();
   const session = await auth()
   const user = session?.user;
-  
-  console.log(posts);
   
   return (
     <main>
@@ -23,9 +21,9 @@ export default async function Home() {
         </Link>
       </div>}
       <div className="p-4">
-        {posts?.map((post) => (
-          <Post key={post.id} post={post} />  // <Post key={post.id} post={post} />
-        ))}
+        <Suspense fallback={<PostsSkeleton />}>
+          <Posts />
+        </Suspense>
       </div>
     </main>
   );
