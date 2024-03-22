@@ -1,7 +1,15 @@
+import { fetchPosts } from '@/lib/data'
 import React from 'react'
+import Post from './post';
 
-export default function Posts() {
+export default async function Posts() {
+  const posts = await fetchPosts();
+
   return (
-    <div>Posts</div>
+    <div className='grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+      { posts?.map((post) => (
+        <Post key={post.id} post={post} />
+      ))}
+    </div>
   )
 }
