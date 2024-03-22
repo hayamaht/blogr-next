@@ -4,7 +4,7 @@ const PostSchema = z.object({
   id: z.string(),
   title: z.string(),
   content: z.string(),
-  published: z.boolean().default(false).optional(),
+  published: z.boolean().default(false),
 });
 
 export const CreatePost = PostSchema.omit({ id: true });
