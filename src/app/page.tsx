@@ -20,7 +20,7 @@ export default async function Home() {
           Create post
         </Link>
       </div>}
-      <div className="p-4">
+      <div className="p-4 container mx-auto mt-12">
         <Suspense fallback={<PostsSkeleton />}>
           <Posts />
         </Suspense>
