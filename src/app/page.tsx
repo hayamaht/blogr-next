@@ -3,6 +3,7 @@ import Posts from "@/components/posts";
 import { PostsSkeleton } from "@/components/skeletons";
 import { buttonVariants } from "@/components/ui/button";
 import { auth } from "@/lib/auth-config";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Suspense } from "react";
 
@@ -13,14 +14,20 @@ export default async function Home() {
   return (
     <main>
       <Header />
-      { user && <div className="p-2">
-        <Link href={'/post/create'} className={buttonVariants({
-          variant: 'default',
-        })}>
-          Create post
-        </Link>
-      </div>}
-      <div className="p-4 container mx-auto mt-12">
+      
+      <div className="p-4 container mx-auto mt-14">
+      { user && (
+        <div className="py-2">
+          <Link href={'/post/create'} className={cn(
+            'bg-primary',
+            buttonVariants({
+              variant: 'default',
+            })
+          )}>
+            Create post
+          </Link>
+        </div>
+      )}
         <Suspense fallback={<PostsSkeleton />}>
           <Posts />
         </Suspense>

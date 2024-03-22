@@ -5,7 +5,10 @@ import { Button } from "../ui/button"
 
 export default function LogoutButton() {
   return (
-    <Button onClick={() => signOut({ callbackUrl: "/" })}>
+    <Button 
+      onClick={() => signOut({ callbackUrl: "/" })}
+      variant={'outline'}
+    >
       Logout
     </Button>
   )
