@@ -10,7 +10,10 @@ export default async function Header() {
   const user = session?.user;
 
   return (
-    <header className='p-2 w-full border-b flex items-center justify-between'>
+    <header className='p-2 w-full border-b bg-primary flex items-center justify-between'>
+      <div className=''>
+
+      </div>
       <Link href={'/'} className='font-bold text-xl'>
         LOGO
       </Link>
