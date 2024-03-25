@@ -19,3 +19,20 @@ export async function fetchPosts() {
     console.error('Database Error: ', error);
   }
 }
+
+export async function fetchPostById(id: string) {
+  unstable_noStore();
+
+  try {
+    const data = await prisma.post.findUnique({
+      where: { id },
+      include: {
+        author: true
+      }
+    });
+
+    return data;
+  } catch (error) {
+    console.error('Database Error: ', error);
+  }
+}

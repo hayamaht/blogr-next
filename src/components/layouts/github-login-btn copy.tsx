@@ -4,7 +4,7 @@ import { useFormStatus } from "react-dom";
 import { signIn } from "next-auth/react";
 import { Button } from "../ui/button";
 
-export default function LoginButton() {
+export default function GitHubLoginButton() {
   //const { pending } = useFormStatus();
 
   return (
