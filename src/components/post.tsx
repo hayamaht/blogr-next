@@ -16,7 +16,7 @@ export default async function Post({
         <CardTitle>{post.title}</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className='text-muted-foreground'>
+        <div className='text-muted-foreground line-clamp-2'>
           { post.content }
         </div>
       </CardContent>
