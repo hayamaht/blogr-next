@@ -2,7 +2,7 @@ import { Button, buttonVariants } from '@/components/ui/button';
 import { auth } from '@/lib/auth-config';
 import { fetchPostById } from '@/lib/data';
 import { cn } from '@/lib/utils';
-import { ArrowLeftIcon, BackpackIcon, Edit2Icon } from 'lucide-react';
+import { ArrowLeftIcon, BackpackIcon, CircleXIcon, Edit2Icon } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import React from 'react'
@@ -33,13 +33,22 @@ export default async function PostPage({
       </div>
       <div className='flex'>
         { user && (
-          <Link href={'./' + post.id + '/edit'} className={cn(
-            'space-x-2',
-            buttonVariants()
-          )}>
-            <Edit2Icon className='w-4 h-4' />
-            <span>Edit</span>
-          </Link>
+          <div className='space-x-2 border-t border-b border-border w-full py-2'>
+            <Link href={'./' + post.id + '/edit'} className={cn(
+              'space-x-2',
+              buttonVariants()
+            )}>
+              <Edit2Icon className='w-4 h-4' />
+              <span>Edit</span>
+            </Link>
+            <Link href={'./' + post.id + '/delete'} className={cn(
+              'space-x-2',
+              buttonVariants({variant: 'destructive'})
+            )}>
+              <CircleXIcon className='w-4 h-4' />
+              <span>Delete</span>
+            </Link>
+          </div>
         )}
       </div>
       <h2 className='text-3xl font-bold'>{post.title}</h2>
