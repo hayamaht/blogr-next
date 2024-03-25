@@ -1,7 +1,8 @@
 import { Button, buttonVariants } from '@/components/ui/button';
+import { auth } from '@/lib/auth-config';
 import { fetchPostById } from '@/lib/data';
 import { cn } from '@/lib/utils';
-import { ArrowLeftIcon, BackpackIcon } from 'lucide-react';
+import { ArrowLeftIcon, BackpackIcon, Edit2Icon } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import React from 'react'
@@ -12,6 +13,8 @@ export default async function PostPage({
   params: { id: string } 
 }) {
   const post = await fetchPostById(id);
+  const session = await auth();
+  const user = session?.user;
 
   if(!post) {
     notFound();
@@ -29,7 +32,15 @@ export default async function PostPage({
         </Link>
       </div>
       <div className='flex'>
-
+        { user && (
+          <Link href={'./' + post.id + '/edit'} className={cn(
+            'space-x-2',
+            buttonVariants()
+          )}>
+            <Edit2Icon className='w-4 h-4' />
+            <span>Edit</span>
+          </Link>
+        )}
       </div>
       <h2 className='text-3xl font-bold'>{post.title}</h2>
       <p>{post.content}</p>
