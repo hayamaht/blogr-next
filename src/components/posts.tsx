@@ -1,6 +1,6 @@
 import { fetchPosts } from '@/lib/data'
 import React from 'react'
-import Post from './post';
+import CardPost from './card-post';
 
 export default async function Posts() {
   const posts = await fetchPosts();
@@ -8,7 +8,7 @@ export default async function Posts() {
   return (
     <div className='grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
       { posts?.map((post) => (
-        <Post key={post.id} post={post} />
+        <CardPost key={post.id} post={post} />
       ))}
     </div>
   )
