@@ -15,7 +15,7 @@ export default function GitHubLoginButton() {
       disabled={pending}
     >
       <Image 
-        src={'/github-logo.png'} alt="google" 
+        src={'/github-logo.png'} alt="github" 
         width={30} height={30} 
       />
       <span>Log in with Github</span>

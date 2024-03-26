@@ -10,7 +10,7 @@ export default function GoogleLoginButton() {
 
   return (
     <Button
-      onClick={() => signIn("google", { callbackUrl:"/dashboard"})}
+      onClick={() => signIn("google", { callbackUrl:"/"})}
       aria-disabled={pending}
       className="space-x-2"
     >
