@@ -8,10 +8,11 @@ export async function fetchPosts() {
     const data = await prisma.post.findMany({
       where: { published: true },
       include: {
-        author: {
-          select: { name: true },
-        },
+        author: true
       },
+      orderBy: {
+        updatedAt: 'desc'
+      }
     });
 
     return data;
