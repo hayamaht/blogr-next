@@ -4,6 +4,7 @@ import { ModeToggle } from './mode-toggle'
 import { buttonVariants } from '../ui/button'
 import { auth } from '@/lib/auth-config';
 import MyAvatar from './my-avatar';
+import LoginDialog from './login-dialog';
 
 export default async function Header() {
   const session = await auth();
@@ -21,11 +22,7 @@ export default async function Header() {
           {user ? (
             <MyAvatar user={user}/>
           ) : (
-            <Link href={'/login'} className={buttonVariants({
-              variant: 'outline'
-            })}>
-              Login
-            </Link>
+            <LoginDialog />
           )}
           
         </div>

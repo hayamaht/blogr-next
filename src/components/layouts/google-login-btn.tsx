@@ -12,7 +12,7 @@ export default function GoogleLoginButton() {
     <Button
       onClick={() => signIn("google", { callbackUrl:"/"})}
       aria-disabled={pending}
-      className="space-x-2"
+      className="space-x-2 w-full"
     >
       <Image 
         src={'/google.png'} alt="google" 

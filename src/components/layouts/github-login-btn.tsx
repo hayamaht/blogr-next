@@ -11,7 +11,7 @@ export default function GitHubLoginButton() {
   return (
     <Button
       onClick={() => signIn("github", { callbackUrl:"/"})}
-      className="space-x-2"
+      className="space-x-2 w-full"
       disabled={pending}
     >
       <Image 
