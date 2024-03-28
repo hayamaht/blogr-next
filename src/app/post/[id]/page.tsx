@@ -1,4 +1,6 @@
+import DeletePostButton from '@/components/delete-post-btn';
 import { Button, buttonVariants } from '@/components/ui/button';
+import { deletePost } from '@/lib/actions';
 import { auth } from '@/lib/auth-config';
 import { fetchPostById } from '@/lib/data';
 import { cn } from '@/lib/utils';
@@ -6,6 +8,7 @@ import { ArrowLeftIcon, BackpackIcon, CircleXIcon, Edit2Icon } from 'lucide-reac
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import React from 'react'
+import { toast } from 'sonner';
 
 export default async function PostPage({ 
   params: { id } 
@@ -33,7 +36,7 @@ export default async function PostPage({
       </div>
       <div className='flex'>
         { user && (
-          <div className='space-x-2 border-t border-b border-border w-full py-2'>
+          <div className='flex space-x-2 border-t border-b border-border w-full py-2'>
             <Link href={'./' + post.id + '/edit'} className={cn(
               'space-x-2',
               buttonVariants()
@@ -41,13 +44,7 @@ export default async function PostPage({
               <Edit2Icon className='w-4 h-4' />
               <span>Edit</span>
             </Link>
-            <Link href={'./' + post.id + '/delete'} className={cn(
-              'space-x-2',
-              buttonVariants({variant: 'destructive'})
-            )}>
-              <CircleXIcon className='w-4 h-4' />
-              <span>Delete</span>
-            </Link>
+            <DeletePostButton post={post} />
           </div>
         )}
       </div>

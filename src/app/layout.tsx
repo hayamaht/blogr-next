@@ -5,6 +5,7 @@ import AuthProvider from "@/components/providers/auth";
 import Header from "@/components/layouts/header";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { Toaster } from "sonner";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -35,6 +36,7 @@ export default function RootLayout({
         >
           <AuthProvider>
             {children}
+            <Toaster richColors />
           </AuthProvider>  
         </ThemeProvider>
           

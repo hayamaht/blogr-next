@@ -1,7 +1,7 @@
 "use server";
 
 import { z } from "zod";
-import { CreatePost, UpdatePost } from "./schemas";
+import { CreatePost, DeletePost, UpdatePost } from "./schemas";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import prisma from "@/lib/prisma";
@@ -81,4 +81,36 @@ export async function updatePost(values: z.infer<typeof UpdatePost>) {
 
   revalidatePath("/posts");
   redirect("/posts");
+}
+
+export async function deletePost(formData: FormData) {
+  const userId = await getUserId();
+  const { id } = DeletePost.parse({
+    id: formData.get("id") as string,
+  });
+
+  const post = await prisma.post.findUnique({
+    where: {
+      id,
+      authorId: userId,
+    },
+  });
+
+  if (!post) {
+    throw new Error("Post not found");
+  }
+
+  try {
+    await prisma.post.delete({
+      where: {
+        id,
+      },
+    });
+    
+    revalidatePath("/");
+    redirect('/');
+    // return { message: "Deleted Post." };
+  } catch (error) {
+    return { message: "Database Error: Failed to Delete Post." };
+  }
 }
