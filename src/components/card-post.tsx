@@ -6,14 +6,17 @@ import { BookOpenIcon } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { auth } from '@/lib/auth-config';
 
 export default async function CardPost({
   post
 }: {
   post: PostWithExtras;
 }) {
+  const session = await auth();
+  const user = session?.user;
   const authorName = post.author ? post.author.name : "Unknown author";
-  // console.log(post);
+
   return (
     <Card>
       <CardHeader>
@@ -33,17 +36,19 @@ export default async function CardPost({
           { post.content }
         </div>
       </CardContent>
-      <CardFooter>
-        <Link href={"/post/" + post.id}
-          className={cn(
-            'space-x-2',
-            buttonVariants()
-          )}
-        >
-          <BookOpenIcon className='w-4 h-4'/>
-          <span>Read</span>
-        </Link>
-      </CardFooter>
+      { user?.id === post.authorId && (
+        <CardFooter>
+            <Link href={"/post/" + post.id}
+            className={cn(
+              'space-x-2',
+              buttonVariants()
+            )}
+          >
+            <BookOpenIcon className='w-4 h-4'/>
+            <span>Read</span>
+          </Link>
+        </CardFooter>
+      )}
     </Card>
   )
 }

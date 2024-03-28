@@ -108,8 +108,8 @@ export async function deletePost(formData: FormData) {
     });
     
     revalidatePath("/");
-    redirect('/');
-    // return { message: "Deleted Post." };
+    //redirect('/');
+    return { message: "Deleted Post." };
   } catch (error) {
     return { message: "Database Error: Failed to Delete Post." };
   }

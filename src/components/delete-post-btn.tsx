@@ -12,9 +12,8 @@ export default function DeletePostButton({ post }: { post: PostWithExtras }) {
   
   return (
     <form action={async (formData) => {
-      // const { message } = await deletePost(formData);
-      await deletePost(formData);
-      toast.success('Deleted Post.');
+      const { message } = await deletePost(formData);
+      toast.success(message);
     }}>
       <input type="hidden" name="id" value={post.id} />
       <Button type="submit" 
