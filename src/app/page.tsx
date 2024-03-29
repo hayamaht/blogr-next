@@ -1,4 +1,5 @@
 import Header from "@/components/layouts/header";
+import {LoadingHeaderSkeleton} from "@/components/layouts/skeletons";
 import Posts from "@/components/posts";
 import { PostsSkeleton } from "@/components/skeletons";
 import { buttonVariants } from "@/components/ui/button";
@@ -13,7 +14,9 @@ export default async function Home() {
   
   return (
     <main>
-      <Header />
+      <Suspense fallback={<LoadingHeaderSkeleton />}>
+        <Header />
+      </Suspense>
       
       <div className="p-4 container mx-auto mt-14">
       { user && (

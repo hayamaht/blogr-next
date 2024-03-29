@@ -5,21 +5,26 @@ import { Button } from "./ui/button";
 import { CircleXIcon } from "lucide-react";
 import { deletePost } from "@/lib/actions";
 import { PostWithExtras } from "@/lib/definitions";
-import { useFormStatus } from "react-dom";
+import { useRouter } from "next/navigation";
+import { useTransition } from "react";
 
 export default function DeletePostButton({ post }: { post: PostWithExtras }) {
-  const { pending } = useFormStatus();
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter()
   
   return (
-    <form action={async (formData) => {
-      const { message } = await deletePost(formData);
-      toast.success(message);
+    <form action={ (formData) => {
+      startTransition(async () => { 
+        const { message } = await deletePost(formData);
+        toast.success(message);
+        router.push('/')
+      })
     }}>
       <input type="hidden" name="id" value={post.id} />
       <Button type="submit" 
         variant={'destructive'} 
         className="space-x-2 disabled:cursor-not-allowed"
-        disabled={pending}
+        disabled={isPending}
       >
         <CircleXIcon className='w-4 h-4' />
         <span>Delete</span>
