@@ -1,12 +1,8 @@
 import { PostWithExtras } from '@/lib/definitions';
-import React from 'react'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card';
-import { buttonVariants } from './ui/button';
-import { BookOpenIcon } from 'lucide-react';
-import Link from 'next/link';
-import { cn } from '@/lib/utils';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { auth } from '@/lib/auth-config';
+import EditPostButton from './edit-post-btn';
 
 export default async function CardPost({
   post
@@ -38,15 +34,7 @@ export default async function CardPost({
       </CardContent>
       { user?.id === post.authorId && (
         <CardFooter>
-            <Link href={"/post/" + post.id}
-            className={cn(
-              'space-x-2',
-              buttonVariants()
-            )}
-          >
-            <BookOpenIcon className='w-4 h-4'/>
-            <span>Read</span>
-          </Link>
+          <EditPostButton id={post.id} />
         </CardFooter>
       )}
     </Card>

@@ -1,14 +1,11 @@
 import DeletePostButton from '@/components/delete-post-btn';
-import { Button, buttonVariants } from '@/components/ui/button';
-import { deletePost } from '@/lib/actions';
+import { buttonVariants } from '@/components/ui/button';
 import { auth } from '@/lib/auth-config';
 import { fetchPostById } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import { ArrowLeftIcon, BackpackIcon, CircleXIcon, Edit2Icon } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import React from 'react'
-import { toast } from 'sonner';
 
 export default async function PostPage({ 
   params: { id } 
