@@ -18,19 +18,23 @@ export default async function Home() {
         <Header />
       </Suspense>
       
-      <div className="p-4 container mx-auto mt-14">
-      { user && (
-        <div className="py-2">
-          <Link href={'/post/create'} className={cn(
-            'bg-primary',
-            buttonVariants({
-              variant: 'default',
-            })
-          )}>
-            Create post
-          </Link>
+      <div className="p-4 container mx-auto pt-16">
+        <div className="flex items-center justify-between">
+          <h1 className="text-3xl font-bold">Posts</h1>
+          <Link href={'/t'} >test</Link>
+          { user && (
+            <div className="py-2">
+              <Link href={'/post/create'} className={cn(
+                'bg-primary',
+                buttonVariants({
+                  variant: 'default',
+                })
+              )}>
+                Create post
+              </Link>
+            </div>
+          )}
         </div>
-      )}
         <Suspense fallback={<PostsSkeleton />}>
           <Posts />
         </Suspense>
