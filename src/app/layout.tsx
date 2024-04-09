@@ -29,17 +29,16 @@ export default function RootLayout({
         inter.variable
       )}>
         <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
         >
           <AuthProvider>
             {children}
-            <Toaster richColors />
           </AuthProvider>  
         </ThemeProvider>
-          
+        <Toaster richColors />
       </body>
     </html>
   );
