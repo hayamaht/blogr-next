@@ -1,6 +1,7 @@
 import React from 'react'
 import { Icons } from './icons'
 import Link from 'next/link'
+import UserAuthForm from './user-auth-form'
 
 export default function SignIn() {
   return (
@@ -13,7 +14,7 @@ export default function SignIn() {
           User Agreement and Privacy Policy.
         </p>
       </div>
-      {/* <UserAuthForm /> */}
+      <UserAuthForm />
       <p className='px-8 text-center text-sm text-muted-foreground'>
         New to Breaddit?{' '}
         <Link
