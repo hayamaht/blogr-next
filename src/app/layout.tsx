@@ -1,14 +1,14 @@
 import "@/styles/globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Noto_Sans } from "next/font/google";
 import AuthProvider from "@/components/providers/auth";
-import Header from "@/components/layouts/header";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "sonner";
 
-const inter = Inter({ 
+const font = Noto_Sans({ 
   subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   variable: "--font-sans"
 });
 
@@ -26,7 +26,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={cn(
         "min-h-screen bg-background font-sans antialiased",
-        inter.variable
+        font.variable
       )}>
         <ThemeProvider
           attribute="class"
