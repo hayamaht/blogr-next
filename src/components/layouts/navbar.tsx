@@ -3,6 +3,7 @@ import React from 'react'
 import { Icons } from './icons'
 import { auth } from '@/lib/auth-config'
 import { buttonVariants } from '../ui/button';
+import SearchBar from './search-bar';
 
 export default async function Navbar() {
   const session = await auth();
@@ -18,8 +19,7 @@ export default async function Navbar() {
           <p className='hidden text-zinc-700 text-sm font-medium md:block'>Breadit</p>
         </Link>
 
-        {/* search bar */}
-        {/* <SearchBar /> */}
+        <SearchBar />
 
         {/* actions */}
         {session?.user ? (
