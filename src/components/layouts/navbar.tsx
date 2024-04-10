@@ -5,6 +5,7 @@ import { auth } from '@/lib/auth-config'
 import { buttonVariants } from '../ui/button';
 import SearchBar from './search-bar';
 import UserAccountNav from './user-account-nav';
+import { ModeToggle } from './mode-toggle';
 
 export default async function Navbar() {
   const session = await auth();
@@ -22,14 +23,19 @@ export default async function Navbar() {
 
         <SearchBar />
 
-        {/* actions */}
-        {session?.user ? (
-          <UserAccountNav user={session.user} />
-        ) : (
-          <Link href='/login' className={buttonVariants()}>
-            Sign In
-          </Link>
-        )}
+        <div className='flex space-x-1'>
+          {session?.user ? (
+            <UserAccountNav user={session.user} />
+          ) : (
+            <Link href='/sign-in' className={buttonVariants({
+              variant: 'outline'
+            })}>
+              Sign In
+            </Link>
+          )}
+
+          <ModeToggle />
+        </div>
       </div>
     </div>
   )
