@@ -5,6 +5,7 @@ import AuthProvider from "@/components/providers/auth";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "sonner";
+import Navbar from "@/components/layouts/navbar";
 
 const font = Noto_Sans({ 
   subsets: ["latin"],
@@ -35,7 +36,10 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <AuthProvider>
-            {children}
+            <Navbar />
+            <main className="container max-w-7xl mx-auto h-full pt-12">
+              {children}
+            </main>
           </AuthProvider>  
         </ThemeProvider>
         <Toaster richColors />
