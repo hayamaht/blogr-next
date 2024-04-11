@@ -20,13 +20,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  authModal,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
+  authModal: React.ReactNode
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn(
-        "min-h-screen bg-background font-sans antialiased mt-12",
+        "min-h-screen bg-background font-sans antialiased pt-12",
         font.variable
       )}>
         <ThemeProvider
@@ -37,6 +39,8 @@ export default function RootLayout({
         >
           <AuthProvider>
             <Navbar />
+            {authModal}
+
             <main className="container max-w-7xl mx-auto h-full pt-12">
               {children}
             </main>
