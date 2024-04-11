@@ -3,7 +3,7 @@
 import { toast } from "sonner";
 import { Button } from "./ui/button";
 import { CircleXIcon } from "lucide-react";
-import { deletePost } from "@/lib/actions";
+// import { deletePost } from "@/lib/actions";
 import { PostWithExtras } from "@/lib/definitions";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
@@ -15,8 +15,8 @@ export default function DeletePostButton({ post }: { post: PostWithExtras }) {
   return (
     <form action={ (formData) => {
       startTransition(async () => { 
-        const { message } = await deletePost(formData);
-        toast.success(message);
+        // const { message } = await deletePost(formData);
+        // toast.success(message);
         router.push('/')
       })
     }}>
