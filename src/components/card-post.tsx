@@ -29,7 +29,7 @@ export default async function CardPost({
       </CardHeader>
       <CardContent>
         <div className='text-muted-foreground line-clamp-2'>
-          { post.content }
+          { post.content?.toString() }
         </div>
       </CardContent>
       { user?.id === post.authorId && (
