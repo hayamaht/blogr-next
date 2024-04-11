@@ -30,22 +30,22 @@ export default function UserAuthForm() {
     )}>
       <Button 
         isLoading={isLoading}
-        className='w-full'
+        className='w-full space-x-2'
         onClick={() => loginWith('google')}
         disabled={isLoading}
       >
-        {isLoading ? null : <Icons.google className='h-4 w-4 mr-2'/>}
-        Google
+        {isLoading ? null : <Icons.google className='h-4 w-4'/>}
+        <span>Google</span>
       </Button>
 
       <Button 
         isLoading={isLoading}
-        className='w-full'
+        className='w-full space-x-2'
         onClick={() => loginWith('github')}
         disabled={isLoading}
       >
-        {isLoading ? null : <Icons.github className='h-4 w-4 mr-2'/>}
-        Github
+        {isLoading ? null : <Icons.github className='h-4 w-4'/>}
+        <span>Github</span>
       </Button>
     </div>
   )
