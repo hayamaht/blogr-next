@@ -7,7 +7,7 @@ import { GetServerSidePropsContext, NextApiRequest, NextApiResponse } from 'next
 
 export const config = {
   pages: {
-    signIn: '/login'
+    signIn: '/sign-in'
   },
   adapter: PrismaAdapter(prisma),
   providers: [
@@ -47,6 +47,9 @@ export const config = {
         email: prismaUser.email,
         image: prismaUser.image,
       }
+    },
+    redirect() {
+      return '/'
     }
   },
 } satisfies NextAuthOptions;
