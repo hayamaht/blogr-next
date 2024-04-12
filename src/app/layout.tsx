@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "sonner";
 import Navbar from "@/components/layouts/navbar";
+import QueryProvider from "@/components/providers/query";
 
 const font = Noto_Sans({ 
   subsets: ["latin"],
@@ -28,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn(
-        "min-h-screen bg-background font-sans antialiased pt-12",
+        "min-h-screen bg-background/5 font-sans antialiased pt-12",
         font.variable
       )}>
         <ThemeProvider
@@ -37,14 +38,16 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AuthProvider>
-            <Navbar />
-            {authModal}
+          <QueryProvider>
+            <AuthProvider>
+              <Navbar />
+              {authModal}
 
-            <main className="container max-w-7xl mx-auto h-full pt-12">
-              {children}
-            </main>
-          </AuthProvider>  
+              <main className="container max-w-7xl mx-auto h-full pt-12">
+                {children}
+              </main>
+            </AuthProvider>  
+          </QueryProvider>
         </ThemeProvider>
         <Toaster richColors />
       </body>
