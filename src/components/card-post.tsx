@@ -1,13 +1,14 @@
-import { PostWithExtras } from '@/lib/definitions';
+// import { PostWithExtras } from '@/lib/definitions';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { auth } from '@/lib/auth-config';
 import EditPostButton from './edit-post-btn';
+import { ExtendedPost } from '@/types/db';
 
 export default async function CardPost({
   post
 }: {
-  post: PostWithExtras;
+  post: ExtendedPost;
 }) {
   const session = await auth();
   const user = session?.user;
@@ -15,7 +16,7 @@ export default async function CardPost({
 
   return (
     <Card>
-      <CardHeader>
+      {/* <CardHeader>
         <CardTitle>{post.title}</CardTitle>
         <div className='flex items-center space-x-2'>
           <Avatar className='w-6 h-6'>
@@ -36,7 +37,7 @@ export default async function CardPost({
         <CardFooter>
           <EditPostButton id={post.id} />
         </CardFooter>
-      )}
+      )} */}
     </Card>
   )
 }

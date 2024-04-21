@@ -4,8 +4,56 @@ import { z } from "zod";
 import { CreatePost, DeletePost, UpdatePost } from "./schemas";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import prisma from "@/lib/prisma";
+import db from "@/lib/prisma";
 import { getUserId } from "./utils";
+import { VoteType } from "@prisma/client";
+
+export async function createVote(voteType: VoteType, postId: string, userId: string) {
+  try {
+    await db.vote.create({
+      data: {
+        type: voteType,
+        userId: userId,
+        postId,
+      },
+    })
+  } catch (error) {
+    console.error(`Database Error: ${error}`)
+  }
+}
+
+export async function updateVote(voteType: VoteType, postId: string, userId: string) {
+  try {
+    await db.vote.update({
+      where: {
+        userId_postId: {
+          postId,
+          userId,
+        },
+      },
+      data: {
+        type: voteType,
+      },
+    })
+  } catch (error) {
+    console.error(`Database Error: ${error}`)
+  }
+}
+
+export async function deleteVote(postId: string, userId: string) {
+  try {
+    await db.vote.delete({
+      where: {
+        userId_postId: {
+          postId,
+          userId,
+        }
+      }
+    })
+  } catch (error) {
+    console.error(`Database Error: ${error}`)
+  }
+}
 
 // export async function createPost(value: z.infer<typeof CreatePost>) {
 //   const userId = await getUserId();

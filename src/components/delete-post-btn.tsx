@@ -4,11 +4,12 @@ import { toast } from "sonner";
 import { Button } from "./ui/button";
 import { CircleXIcon } from "lucide-react";
 // import { deletePost } from "@/lib/actions";
-import { PostWithExtras } from "@/lib/definitions";
+// import { PostWithExtras } from "@/lib/definitions";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
+import { ExtendedPost } from "@/types/db";
 
-export default function DeletePostButton({ post }: { post: PostWithExtras }) {
+export default function DeletePostButton({ post }: { post: ExtendedPost }) {
   const [isPending, startTransition] = useTransition();
   const router = useRouter()
   

@@ -7,10 +7,13 @@ import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { useMutation } from "@tanstack/react-query"
 import { CreateSubredditPayload } from "@/lib/validators/subreddit"
+import { useCustomToasts } from '@/hooks/use-custom-toasts'
+import { toast } from 'sonner'
 
 export default function CreatePage() {
   const router = useRouter()
   const [ input, setInput ] = useState<string>('')
+  const { loginToast } = useCustomToasts()
 
   const { mutate: createCommunity, status } = useMutation({
     mutationFn: async () => {
@@ -24,7 +27,31 @@ export default function CreatePage() {
     onSuccess: (data) => {
       router.push(`/r/${data}`)
     },
-    onError: () => {}
+    onError: (err) => {
+      if (err instanceof AxiosError) {
+        if (err.response?.status === 409) {
+          toast.error('Subreddit already exists.', {
+            description: 'Please try another name.'
+          })
+          return 
+        }
+
+        if (err.response?.status === 422) {
+          toast.error('Invalid subreddit name.', {
+            description: 'Please choose a name between 3 and 21 letters.'
+          })
+          return
+        }
+
+        if (err.response?.status === 401) {
+          return loginToast()
+        }
+      }
+
+      toast.error('There was an error', {
+        description: 'Could not create subreddit'
+      })
+    }
   })
 
   return (
@@ -57,13 +84,15 @@ export default function CreatePage() {
           <Button
             disabled={status === 'pending'}
             variant='secondary'
-            onClick={() => router.back()}>
+            onClick={() => router.back()}
+          >
             Cancel
           </Button>
           <Button
             isLoading={status === 'pending'}
             disabled={input.length === 0}
-            onClick={() => createCommunity()}>
+            onClick={() => createCommunity()}
+          >
             Create Community
           </Button>
         </div>
